@@ -25,25 +25,38 @@
 
   RadioGroup.prototype.handleKeyDown = function(e) {
     switch(e.keyCode) {
-
+      // Applies to keyboard event of LEFT and UP
       case VK_UP:
       case VK_LEFT: {
 
         e.preventDefault();
 
-        // This seems like a good place to do some stuff :)
-
+        // Set up the boundaries of shifting index upwards
+        if (this.focusedIdx > 0) {
+          this.focusedIdx -= 1;
+        }
+        // Once we hit the top index, we rove down to the bottom 
+        else {
+          this.focusedIdx = this.buttons.length - 1;
+        }
         break;
 
       }
 
+      // Applies to keyboard event of RIGHT and DOWN
       case VK_DOWN:
       case VK_RIGHT: {
 
         e.preventDefault();
 
-        // This seems like a good place to do some stuff :)
-
+        // Set up the boundaries of shifting index downwards
+        if (this.focusedIdx < this.buttons.length - 1) {
+          this.focusedIdx += 1;
+        }
+        // Once we hit the bottom index, we rove up to the top
+        else {
+          this.focusedIdx = 0;
+        }
         break;
       }
 
